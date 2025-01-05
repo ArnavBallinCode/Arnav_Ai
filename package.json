@@ -1,4 +1,14 @@
 {
+  "name": "arnav_ai",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.0.7"
+  },
   "dependencies": {
     "dotenv": "^16.4.7"
   }

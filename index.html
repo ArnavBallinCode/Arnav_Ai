@@ -7,11 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="chat-container">
-        <div id="chat-messages"></div>
-        <input type="text" id="user-input" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
-    </div>
-    <script type="module" src="app.js"></script> <!-- Ensure this line -->
+    <header>
+        <h1>Welcome to Arnav AI Chat</h1>
+    </header>
+    <main>
+        <div id="chat-container" role="main">
+            <div id="chat-messages" aria-live="polite"></div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type your message here..." aria-label="User input">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Created by Arnav</p>
+    </footer>
+    <script type="module" src="app.js"></script>
 </body>
 </html>

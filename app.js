@@ -48,9 +48,6 @@ Currently, he is exploring Quantum Key Distribution (QKD) research and developin
         const data = await response.json();
         let botResponse = data.candidates[0].content.parts[0].text;
 
-        // Customize the AI response
-        botResponse += "\n\nFor more information about Arnav, visit [Arnav's GitHub Profile](https://github.com/ArnavBallinCode).";
-
         addMessageToChat('Arnav_AI', botResponse);
     } catch (error) {
         console.log(error);

@@ -9,7 +9,7 @@ async function sendMessage() {
     addMessageToChat('User', userInput);
     document.getElementById('user-input').value = '';
 
-    // Check for specific questions about creation or Arnav
+    // Predefined responses for specific questions
     if (/who made you|who created you|who built you/i.test(userInput)) {
         const botResponse = "Arnav Angarkar made me.";
         addMessageToChat('Bot', botResponse);
@@ -17,7 +17,7 @@ async function sendMessage() {
     }
 
     if (/who is arnav|tell me about arnav|anything about arnav/i.test(userInput)) {
-        const botResponse = "Arnav Angarkar is a first-year student at IIIT Dharwad.He is 18 years old.";
+        const botResponse = "Arnav Angarkar is a first-year student at IIIT Dharwad and is 18 years old.";
         addMessageToChat('Bot', botResponse);
         return;
     }
@@ -37,7 +37,10 @@ async function sendMessage() {
         });
 
         const data = await response.json();
-        const botResponse = data.candidates[0].content.parts[0].text || "Sorry, I couldn't generate a response.";
+        let botResponse = data.candidates[0].content.parts[0].text || "Sorry, I couldn't generate a response.";
+
+        // Format any code blocks within the response
+        botResponse = formatCodeBlocks(botResponse);
 
         addMessageToChat('Bot', botResponse);
     } catch (error) {
@@ -64,6 +67,24 @@ function getConversationHistory() {
         conversation += `${message.innerText}\n`;
     }
     return conversation;
+}
+
+// Function to format code blocks with indentation
+function formatCodeBlocks(text) {
+    // Match code blocks between triple backticks
+    return text.replace(/```([\s\S]*?)```/g, function (match, code) {
+        return `<pre><code>${escapeHTML(code)}</code></pre>`;
+    });
+}
+
+// Escape HTML tags to preserve formatting
+function escapeHTML(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 }
 
 // Ensure `sendMessage` is accessible globally

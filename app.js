@@ -9,7 +9,21 @@ async function sendMessage() {
     addMessageToChat('User', userInput);
     document.getElementById('user-input').value = '';
 
+    // Check for specific questions about creation or Arnav
+    if (/who made you|who created you|who built you/i.test(userInput)) {
+        const botResponse = "Arnav made me.";
+        addMessageToChat('Bot', botResponse);
+        return;
+    }
+
+    if (/who is arnav|tell me about arnav|anything about arnav/i.test(userInput)) {
+        const botResponse = "Arnav is a first-year student at IIIT Dharwad and is 18 years old.";
+        addMessageToChat('Bot', botResponse);
+        return;
+    }
+
     try {
+        // Send input to AI model for dynamic responses
         const conversation = getConversationHistory() + `User: ${userInput}\n`;
 
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
@@ -25,10 +39,7 @@ async function sendMessage() {
         const data = await response.json();
         const botResponse = data.candidates[0].content.parts[0].text || "Sorry, I couldn't generate a response.";
 
-        // Ensure no references to Arnav or unrelated information
-        const cleanResponse = botResponse.replace(/Arnav.*?\./g, ""); // Remove any mention of Arnav.
-
-        addMessageToChat('Bot', cleanResponse);
+        addMessageToChat('Bot', botResponse);
     } catch (error) {
         console.log(error);
         addMessageToChat('Bot', 'Sorry - Something went wrong. Please try again!');

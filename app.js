@@ -11,13 +11,13 @@ async function sendMessage() {
 
     // Check for specific questions about creation or Arnav
     if (/who made you|who created you|who built you/i.test(userInput)) {
-        const botResponse = "Arnav made me.";
+        const botResponse = "Arnav Angarkar made me.";
         addMessageToChat('Bot', botResponse);
         return;
     }
 
     if (/who is arnav|tell me about arnav|anything about arnav/i.test(userInput)) {
-        const botResponse = "Arnav is a first-year student at IIIT Dharwad and is 18 years old.";
+        const botResponse = "Arnav Angarkar is a first-year student at IIIT Dharwad.He is 18 years old.";
         addMessageToChat('Bot', botResponse);
         return;
     }

@@ -25,7 +25,10 @@ async function sendMessage() {
         const data = await response.json();
         const botResponse = data.candidates[0].content.parts[0].text || "Sorry, I couldn't generate a response.";
 
-        addMessageToChat('Bot', botResponse);
+        // Ensure no references to Arnav or unrelated information
+        const cleanResponse = botResponse.replace(/Arnav.*?\./g, ""); // Remove any mention of Arnav.
+
+        addMessageToChat('Bot', cleanResponse);
     } catch (error) {
         console.log(error);
         addMessageToChat('Bot', 'Sorry - Something went wrong. Please try again!');

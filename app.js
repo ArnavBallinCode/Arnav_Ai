@@ -12,13 +12,13 @@ async function sendMessage() {
     // Predefined responses for specific questions
     if (/who made you|who created you|who built you/i.test(userInput)) {
         const botResponse = "Arnav Angarkar made me.";
-        addMessageToChat('Bot', botResponse);
+        addMessageToChat('ArnavAI', botResponse);
         return;
     }
 
     if (/who is arnav|tell me about arnav|anything about arnav/i.test(userInput)) {
         const botResponse = "Arnav Angarkar is a first-year student at IIIT Dharwad and is 18 years old.";
-        addMessageToChat('Bot', botResponse);
+        addMessageToChat('ArnavAI', botResponse);
         return;
     }
 
@@ -42,10 +42,10 @@ async function sendMessage() {
         // Format any code blocks within the response
         botResponse = formatCodeBlocks(botResponse);
 
-        addMessageToChat('Bot', botResponse);
+        addMessageToChat('ArnavAI', botResponse);
     } catch (error) {
         console.log(error);
-        addMessageToChat('Bot', 'Sorry - Something went wrong. Please try again!');
+        addMessageToChat('ArnavAI', 'Sorry - Something went wrong. Please try again!');
     }
 }
 
